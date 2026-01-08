@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Node/Electron
+node_modules/
+dist/
+out/
+build/
+target/
+
+# Logs
+*.log
+
+# Local data
+data/
+
+# IDE
+.vscode/

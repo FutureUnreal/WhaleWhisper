@@ -1,0 +1,18 @@
+{
+  "name": "@whalewhisper/app-settings",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./sections/*": "./src/sections/*",
+    "./backgrounds": "./src/backgrounds/index.ts",
+    "./backgrounds/*": "./src/backgrounds/*"
+  },
+  "dependencies": {
+    "@whalewhisper/app-core": "workspace:*",
+    "@whalewhisper/stage-settings-ui": "workspace:*",
+    "pinia": "^2.2.6",
+    "vue": "^3.5.12"
+  }
+}

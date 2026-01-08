@@ -1,0 +1,39 @@
+{
+  "name": "@whalewhisper/desktop-renderer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.9.1",
+    "@tauri-apps/plugin-dialog": "^2.0.0",
+    "@whalewhisper/app-core": "workspace:*",
+    "@whalewhisper/app-settings": "workspace:*",
+    "@whalewhisper/stage-core": "workspace:*",
+    "@whalewhisper/stage-settings-ui": "workspace:*",
+    "@pixiv/three-vrm": "^3.4.4",
+    "@vueuse/core": "^10.11.0",
+    "jszip": "^3.10.1",
+    "localforage": "^1.10.0",
+    "pinia": "^2.2.6",
+    "pixi-live2d-display": "^0.4.0",
+    "pixi.js": "^6.5.10",
+    "three": "^0.182.0",
+    "vue": "^3.5.12"
+  },
+  "devDependencies": {
+    "@iconify-json/solar": "^1.2.1",
+    "@unocss/preset-attributify": "^0.62.3",
+    "@unocss/preset-icons": "^0.62.3",
+    "@unocss/preset-uno": "^0.62.3",
+    "@unocss/preset-web-fonts": "^0.62.3",
+    "@unocss/reset": "^0.62.3",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "typescript": "^5.6.3",
+    "unocss": "^0.62.3",
+    "vite": "^5.4.10"
+  }
+}

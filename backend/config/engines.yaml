@@ -1,0 +1,315 @@
+llm:
+  default: openrouter
+  engines:
+    - id: openai
+      label: OpenAI
+      type: openai_compat
+      base_url: https://api.openai.com/v1
+      model: gpt-4o-mini
+      api_key_env: OPENAI_API_KEY
+      paths:
+        chat: /chat/completions
+        health: /models
+    - id: groq
+      label: Groq
+      type: openai_compat
+      base_url: https://api.groq.com/openai/v1
+      model: llama-3.1-8b-instant
+      api_key_env: GROQ_API_KEY
+      paths:
+        chat: /chat/completions
+        health: /models
+    - id: openrouter
+      label: OpenRouter
+      type: openai_compat
+      base_url: https://openrouter.ai/api/v1
+      model: openai/gpt-4o-mini
+      api_key_env: OPENROUTER_API_KEY
+      paths:
+        chat: /chat/completions
+        health: /models
+      headers:
+        HTTP-Referer: https://your-site.example
+        X-Title: WhaleWhisper
+      params:
+        - name: temperature
+          type: float
+          default: 0.7
+        - name: max_tokens
+          type: int
+    - id: deepseek
+      label: DeepSeek
+      type: openai_compat
+      base_url: https://api.deepseek.com/v1
+      model: deepseek-chat
+      api_key_env: DEEPSEEK_API_KEY
+      paths:
+        chat: /chat/completions
+        health: /models
+    - id: 302
+      label: 302.AI
+      type: openai_compat
+      base_url: https://api.302.ai/v1
+      model: gpt-4o-mini
+      api_key_env: AI302_API_KEY
+      paths:
+        chat: /chat/completions
+        health: /models
+    - id: lmstudio
+      label: LM Studio
+      type: openai_compat
+      base_url: http://127.0.0.1:1234/v1
+      model: llama3.1
+      paths:
+        chat: /chat/completions
+        health: /models
+    - id: vllm
+      label: vLLM
+      type: openai_compat
+      base_url: http://127.0.0.1:8000/v1
+      model: llama3.1
+      paths:
+        chat: /chat/completions
+        health: /models
+    - id: ollama
+      label: Ollama
+      type: openai_compat
+      base_url: http://127.0.0.1:11434/v1
+      model: llama3.1
+      paths:
+        chat: /chat/completions
+        health: /models
+tts:
+  default: openai-tts
+  engines:
+    - id: openai-tts
+      label: OpenAI TTS
+      type: openai_compat
+      base_url: https://api.openai.com/v1
+      model: gpt-4o-mini-tts
+      api_key_env: OPENAI_API_KEY
+      paths:
+        speech: /audio/speech
+        health: /models
+      defaults:
+        voice: alloy
+        response_format: mp3
+      params:
+        - name: voice
+          type: string
+          default: alloy
+        - name: response_format
+          type: string
+          default: mp3
+        - name: speed
+          type: float
+    - id: volcengine-speech
+      label: Volcengine
+      type: openai_compat
+      base_url: https://unspeech.hyp3r.link/v1
+      model: v1
+      api_key_env: UNSPEECH_API_KEY
+      paths:
+        speech: /audio/speech
+        health: /models
+      params:
+        - name: voice
+          type: string
+        - name: appId
+          type: string
+    - id: alibaba-cloud-model-studio-speech
+      label: Alibaba Cloud Model Studio
+      type: openai_compat
+      base_url: https://unspeech.hyp3r.link/v1
+      model: alibaba/cosyvoice-v1
+      api_key_env: BAILIAN_API_KEY
+      paths:
+        speech: /audio/speech
+        health: /health
+      defaults:
+        response_format: wav
+      params:
+        - name: voice
+          type: string
+        - name: response_format
+          type: string
+        - name: speed
+          type: float
+    - id: dify-tts
+      label: Dify TTS
+      type: dify_tts
+      base_url: https://api.dify.ai/v1
+      api_key_env: DIFY_API_KEY
+      paths:
+        speech: /text-to-audio
+        health: /health
+      defaults:
+        username: whale
+      params:
+        - name: api_server
+          type: string
+          default: https://api.dify.ai/v1
+        - name: api_key
+          type: secret
+        - name: username
+          type: string
+          default: whale
+    - id: coze-tts
+      label: Coze TTS
+      type: coze_tts
+      base_url: https://api.coze.cn
+      api_key_env: COZE_TOKEN
+      paths:
+        speech: /v1/audio/speech
+        bot: /v1/bots/{bot_id}
+        health: /health
+      defaults:
+        response_format: mp3
+        sample_rate: 16000
+      params:
+        - name: token
+          type: string
+        - name: bot_id
+          type: string
+        - name: response_format
+          type: string
+          default: mp3
+        - name: sample_rate
+          type: int
+          default: 16000
+asr:
+  default: openai-asr
+  engines:
+    - id: openai-asr
+      label: OpenAI ASR
+      type: openai_compat
+      base_url: https://api.openai.com/v1
+      model: whisper-1
+      api_key_env: OPENAI_API_KEY
+      paths:
+        transcription: /audio/transcriptions
+        health: /models
+      defaults:
+        response_format: json
+      params:
+        - name: response_format
+          type: string
+          default: json
+        - name: language
+          type: string
+    - id: dify-asr
+      label: Dify ASR
+      type: dify_asr
+      base_url: https://api.dify.ai/v1
+      api_key_env: DIFY_API_KEY
+      paths:
+        transcription: /audio-to-text
+        health: /health
+      defaults:
+        username: whale
+      params:
+        - name: api_server
+          type: string
+          default: https://api.dify.ai/v1
+        - name: api_key
+          type: string
+        - name: username
+          type: string
+          default: whale
+    - id: coze-asr
+      label: Coze ASR
+      type: coze_asr
+      base_url: https://api.coze.cn
+      api_key_env: COZE_TOKEN
+      paths:
+        transcription: /v1/audio/transcriptions
+        health: /health
+      params:
+        - name: token
+          type: string
+agent:
+  default: dify-agent
+  engines:
+    - id: dify-agent
+      label: Dify Agent
+      type: dify_agent
+      base_url: http://localhost/v1
+      api_key_env: DIFY_API_KEY
+      paths:
+        chat: /chat-messages
+        conversation: /chat-messages
+        health: /console/api/ping
+      defaults:
+        username: whale
+      params:
+        - name: api_server
+          type: string
+          default: http://localhost/v1
+        - name: api_key
+          type: secret
+        - name: username
+          type: string
+          default: whale
+        - name: inputs
+          type: string
+          description: JSON object for required app inputs, e.g. {"topic":"math"}
+    - id: coze-agent
+      label: Coze Agent
+      type: coze_agent
+      base_url: https://api.coze.cn
+      api_key_env: COZE_TOKEN
+      paths:
+        chat: /v3/chat
+        conversation: /v1/conversation/create
+        health: /health
+      defaults:
+        user: whale
+      params:
+        - name: token
+          type: secret
+        - name: bot_id
+          type: string
+        - name: api_base
+          type: string
+          default: https://api.coze.cn
+        - name: user
+          type: string
+          default: whale
+    - id: fastgpt-agent
+      label: FastGPT Agent
+      type: fastgpt_agent
+      base_url: https://cloud.fastgpt.cn/api
+      api_key_env: FASTGPT_API_KEY
+      paths:
+        chat: /v1/chat/completions
+        health: /health
+      defaults:
+        uid: whale
+      params:
+        - name: base_url
+          type: string
+          default: https://cloud.fastgpt.cn/api
+        - name: api_key
+          type: secret
+        - name: uid
+          type: string
+          default: whale
+    - id: custom-agent
+      label: Custom Agent
+      type: custom_agent
+      base_url: http://localhost:9001
+      api_key_env: CUSTOM_AGENT_API_KEY
+      capabilities:
+        action_tokens: true
+      paths:
+        chat: /chat
+        conversation: /conversation
+        health: /health
+      params:
+        - name: base_url
+          type: string
+          default: http://localhost:9001
+        - name: api_key
+          type: secret
+        - name: conversation_id
+          type: string

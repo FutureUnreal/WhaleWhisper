@@ -1,0 +1,52 @@
+{
+  "name": "@whalewhisper/web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@whalewhisper/app-core": "workspace:*",
+    "@whalewhisper/app-settings": "workspace:*",
+    "@whalewhisper/stage-core": "workspace:*",
+    "@whalewhisper/stage-settings-ui": "workspace:*",
+    "@pixiv/three-vrm": "^3.4.4",
+    "@formkit/auto-animate": "^0.9.0",
+    "@shikijs/rehype": "^3.20.0",
+    "@vueuse/core": "^10.11.0",
+    "dompurify": "^3.0.11",
+    "jszip": "^3.10.1",
+    "localforage": "^1.10.0",
+    "pinia": "^2.2.6",
+    "pixi-live2d-display": "^0.4.0",
+    "pixi.js": "^6.5.10",
+    "rehype-katex": "^7.0.1",
+    "rehype-stringify": "^10.0.1",
+    "remark-math": "^6.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "shiki": "^3.20.0",
+    "three": "^0.182.0",
+    "unified": "^11.0.5",
+    "vue": "^3.5.12"
+  },
+  "devDependencies": {
+    "@iconify/utils": "^2.2.1",
+    "@iconify-json/eos-icons": "^1.2.2",
+    "@iconify-json/solar": "^1.2.1",
+    "@iconify-json/simple-icons": "^1.2.38",
+    "@proj-airi/lobe-icons": "^1.0.18",
+    "@types/three": "^0.182.0",
+    "@unocss/preset-attributify": "^0.62.3",
+    "@unocss/preset-icons": "^0.62.3",
+    "@unocss/preset-uno": "^0.62.3",
+    "@unocss/preset-web-fonts": "^0.62.3",
+    "@unocss/reset": "^0.62.3",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "typescript": "^5.6.3",
+    "unocss": "^0.62.3",
+    "vite": "^5.4.10"
+  }
+}

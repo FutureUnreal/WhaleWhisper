@@ -1,0 +1,40 @@
+:root {
+  --bg-color-light: rgb(255 255 255);
+  --bg-color-dark: rgb(18 18 18);
+  --bg-color: var(--bg-color-light);
+}
+
+* {
+  box-sizing: border-box;
+  touch-action: manipulation;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overscroll-behavior: none;
+}
+
+html {
+  background: var(--bg-color);
+  font-family: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  transition: all 0.3s ease-in-out;
+}
+
+html.dark {
+  --bg-color: var(--bg-color-dark);
+  color-scheme: dark;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

@@ -1,0 +1,113 @@
+from typing import Any, Dict, List, Optional
+
+from fastapi import APIRouter
+from pydantic import BaseModel, Field
+
+from app.api.provider_catalog_schemas import ProviderCatalogResponse, ProviderDesc
+from app.services.providers.registry import registry
+from app.services.providers.types import ProviderConfig
+from app.services.catalogs.provider_catalog import get_provider_catalog
+
+router = APIRouter(prefix="/providers", tags=["providers"])
+
+
+class ProviderRequest(BaseModel):
+    provider_id: str = Field(..., alias="providerId")
+    api_key: Optional[str] = Field(default=None, alias="apiKey")
+    base_url: Optional[str] = Field(default=None, alias="baseUrl")
+    model: Optional[str] = None
+    extra: Dict[str, Any] = Field(default_factory=dict)
+
+    class Config:
+        populate_by_name = True
+
+
+class ProviderValidationResponse(BaseModel):
+    valid: bool
+    reason: Optional[str] = None
+
+
+class ProviderModelsResponse(BaseModel):
+    models: List[Dict[str, Any]] = Field(default_factory=list)
+
+
+class ProviderVoicesResponse(BaseModel):
+    voices: List[Dict[str, Any]] = Field(default_factory=list)
+
+
+def _to_config(request: ProviderRequest) -> ProviderConfig:
+    return ProviderConfig(
+        provider_id=request.provider_id,
+        api_key=request.api_key,
+        base_url=request.base_url,
+        model=request.model,
+        extra=request.extra or {},
+    )
+
+
+@router.post("/validate", response_model=ProviderValidationResponse)
+async def validate_provider(request: ProviderRequest) -> ProviderValidationResponse:
+    config = _to_config(request)
+    result = await registry.validate(config)
+    return ProviderValidationResponse(valid=result.valid, reason=result.reason)
+
+
+@router.post("/models", response_model=ProviderModelsResponse)
+async def list_models(request: ProviderRequest) -> ProviderModelsResponse:
+    config = _to_config(request)
+    models = await registry.list_models(config)
+    return ProviderModelsResponse(models=models)
+
+
+@router.post("/voices", response_model=ProviderVoicesResponse)
+async def list_voices(request: ProviderRequest) -> ProviderVoicesResponse:
+    config = _to_config(request)
+    voices = await registry.list_voices(config)
+    return ProviderVoicesResponse(voices=voices)
+
+
+@router.get("/catalog", response_model=ProviderCatalogResponse)
+async def list_provider_catalog() -> ProviderCatalogResponse:
+    catalog = get_provider_catalog()
+    providers = [
+        ProviderDesc(
+            id=spec.id,
+            label=spec.label,
+            category=spec.category,
+            icon=spec.icon,
+            description=spec.description,
+            engineId=spec.engine_id,
+            defaults={
+                "baseUrl": spec.defaults.base_url,
+                "model": spec.defaults.model,
+                "voice": spec.defaults.voice,
+            }
+            if spec.defaults
+            else None,
+            fields=[
+                {
+                    "id": field.id,
+                    "label": field.label,
+                    "type": field.field_type,
+                    "required": field.required,
+                    "placeholder": field.placeholder,
+                    "default": field.default,
+                    "description": field.description,
+                    "scope": field.scope,
+                    "options": [
+                        {
+                            "id": option.id,
+                            "label": option.label,
+                            "description": option.description,
+                            "icon": option.icon,
+                        }
+                        for option in field.options
+                    ],
+                    "optionsSource": field.options_source,
+                }
+                for field in spec.fields
+            ],
+        )
+        for spec in catalog.list()
+    ]
+    return ProviderCatalogResponse(providers=providers)

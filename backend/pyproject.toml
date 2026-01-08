@@ -1,0 +1,29 @@
+[project]
+name = "whalewhisper-backend"
+version = "0.1.0"
+description = "WhaleWhisper FastAPI backend"
+requires-python = ">=3.10"
+dependencies = [
+  "fastapi",
+  "uvicorn[standard]",
+  "pydantic",
+  "pydantic-settings",
+  "httpx",
+  "python-multipart",
+  "python-dotenv",
+  "pyyaml",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pyinstaller",
+  "websockets>=12.0",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+exclude = ["config*"]

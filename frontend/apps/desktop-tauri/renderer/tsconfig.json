@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@whalewhisper/app-core": ["../../../packages/app-core/src/index.ts"],
+      "@whalewhisper/app-core/*": ["../../../packages/app-core/src/*"],
+      "@whalewhisper/app-settings": ["../../../packages/app-settings/src/index.ts"],
+      "@whalewhisper/app-settings/*": ["../../../packages/app-settings/src/*"],
+      "@whalewhisper/stage-core": ["../../../packages/stage-core/src/index.ts"],
+      "@whalewhisper/stage-core/*": ["../../../packages/stage-core/src/*"],
+      "@whalewhisper/stage-settings-ui": ["../../../packages/stage-settings-ui/src/index.ts"],
+      "@whalewhisper/stage-settings-ui/*": ["../../../packages/stage-settings-ui/src/*"]
+    },
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.vue", "src/**/*.json"]
+}

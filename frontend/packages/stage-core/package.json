@@ -1,0 +1,24 @@
+{
+  "name": "@whalewhisper/stage-core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./components/*": "./src/components/*",
+    "./stores/*": "./src/stores/*",
+    "./utils/*": "./src/utils/*",
+    "./config": "./src/config.ts"
+  },
+  "dependencies": {
+    "@pixiv/three-vrm": "^3.4.4",
+    "@vueuse/core": "^10.11.0",
+    "jszip": "^3.10.1",
+    "localforage": "^1.10.0",
+    "pinia": "^2.2.6",
+    "pixi-live2d-display": "^0.4.0",
+    "pixi.js": "^6.5.10",
+    "three": "^0.182.0",
+    "vue": "^3.5.12"
+  }
+}

@@ -1,0 +1,25 @@
+﻿plugins:
+  - id: dify-agent
+    name: Dify Agent Connector
+    version: "0.1.0"
+    description: Connect to Dify agent apps via SSE.
+    providers:
+      - dify
+    metadata:
+      kind: agent
+  - id: coze-agent
+    name: Coze Agent Connector
+    version: "0.1.0"
+    description: Connect to Coze bots.
+    providers:
+      - coze
+    metadata:
+      kind: agent
+  - id: fastgpt-agent
+    name: FastGPT Connector
+    version: "0.1.0"
+    description: Connect to FastGPT agents.
+    providers:
+      - fastgpt
+    metadata:
+      kind: agent

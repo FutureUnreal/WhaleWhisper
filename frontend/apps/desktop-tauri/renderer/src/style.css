@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+body {
+  font-family: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  background: transparent;
+  color: #111827;
+}
+
+html[data-desktop-view="settings"],
+body[data-desktop-view="settings"],
+body[data-desktop-view="settings"] #app,
+html[data-desktop-view="chat"],
+body[data-desktop-view="chat"],
+body[data-desktop-view="chat"] #app,
+html[data-desktop-view="controls"],
+body[data-desktop-view="controls"],
+body[data-desktop-view="controls"] #app {
+  background: transparent;
+}
+
+.desktop-stage {
+  transition: opacity 0.2s ease-in-out;
+  will-change: opacity;
+}
+
+.desktop-stage.is-faded {
+  opacity: var(--hover-fade-opacity, 0.35);
+}

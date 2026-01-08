@@ -1,0 +1,68 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "WhaleWhisper",
+  "version": "../package.json",
+  "identifier": "com.whalewhisper.desktop",
+  "build": {
+    "beforeDevCommand": "pnpm -C renderer dev",
+    "devUrl": "http://localhost:5176",
+    "beforeBuildCommand": "powershell -ExecutionPolicy Bypass -File scripts\\\\prepare-backend.ps1 && pnpm -C renderer build",
+    "frontendDist": "../renderer/dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "WhaleWhisper",
+        "url": "index.html",
+        "width": 640,
+        "height": 720,
+        "minWidth": 360,
+        "minHeight": 520,
+        "transparent": true,
+        "decorations": false,
+        "shadow": false,
+        "acceptFirstMouse": true,
+        "resizable": true,
+        "alwaysOnTop": true,
+        "skipTaskbar": true
+      },
+      {
+        "label": "settings",
+        "title": "WhaleWhisper Settings",
+        "url": "index.html#settings",
+        "visible": false,
+        "width": 960,
+        "height": 720,
+        "minWidth": 720,
+        "minHeight": 520,
+        "resizable": true,
+        "transparent": true,
+        "decorations": false,
+        "shadow": false,
+        "alwaysOnTop": false,
+        "skipTaskbar": false
+      }
+    ],
+    "security": {
+      "csp": null,
+      "dangerousDisableAssetCspModification": true,
+      "assetProtocol": {
+        "enable": true,
+        "scope": {
+          "allow": ["**/*"],
+          "requireLiteralLeadingDot": false
+        }
+      }
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "externalBin": ["bin/whalewhisper-backend"],
+    "resources": ["config"],
+    "icon": [
+      "icons/icon.ico"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "whalewhisper-frontend",
+  "private": true,
+  "packageManager": "pnpm@9.12.2",
+  "scripts": {
+    "dev:web": "pnpm -C apps/web dev",
+    "build:web": "pnpm -C apps/web build",
+    "dev:desktop": "pnpm -C apps/desktop dev",
+    "dev:desktop:tauri": "pnpm -C apps/desktop-tauri dev",
+    "build:desktop:tauri": "pnpm -C apps/desktop-tauri build"
+  }
+}
