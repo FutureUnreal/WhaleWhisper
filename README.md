@@ -2,6 +2,11 @@
 
 <div align="center">
 
+<div align="center">
+<p>我们需要一只鲸鱼</p>
+<img src="./assets/page.png" width="180">
+</div>
+
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-009688.svg)](https://fastapi.tiangolo.com/)
@@ -20,7 +25,7 @@
 WhaleWhisper 是一个**模块化的数字人/虚拟角色框架**，为开发者提供完整的数字人智能体解决方案。
 
 **核心能力：**
-- **角色舞台**：支持 Live2D/VRM 模型渲染
+- **角色舞台**：支持 Live2D/VRM 模型渲染，可根据对话内容自动调用表情和动作
 - **多模态交互**：文本对话 + 语音识别(ASR) + 语音合成(TTS)
 - **智能体编排**：LLM 推理 + Agent 工作流 + 工具调用
 - **本地记忆**：基于 SQLite 的对话记忆与上下文管理
@@ -28,6 +33,7 @@ WhaleWhisper 是一个**模块化的数字人/虚拟角色框架**，为开发�
 
 ## ✨ 核心特性
 
+- **智能表情动作**：基于 LLM 返回内容自动触发角色表情和动作，增强交互真实感
 - **统一接入层**：兼容 OpenAI、Dify、FastGPT、Coze 等多种 LLM 服务
 - **灵活配置**：YAML 配置驱动，快速切换不同 AI 能力提供商
 - **实时通信**：支持 WebSocket 和 Server-Sent Events (SSE)
@@ -53,6 +59,7 @@ WhaleWhisper 是一个**模块化的数字人/虚拟角色框架**，为开发�
 
 - ✅ **对话系统**：基本可用
 - ✅ **记忆系统**：完整实现
+- ✅ **智能表情动作**：Live2D 自动表情动作控制已实现
 - ⚠️ **Live2D/VRM 渲染**：部分功能调试中
 - ⚠️ **AI 服务商集成**：部分提供商还在测试
 - 🔨 **桌面端**：持续优化中
